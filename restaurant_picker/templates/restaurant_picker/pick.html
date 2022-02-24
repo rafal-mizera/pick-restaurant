@@ -1,0 +1,30 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Pick restaurant{% endblock %}
+
+{% block content %}
+
+{% if result %}
+<div class="container-fluid p-3 my-3">
+  <h1 class="display-4">Your restaurant for today</h1>
+</div>
+<div class="container-fluid p-3 my-3">
+  <div class="card">
+
+      <h2 class="card-header">{{result.name}}</h2>
+      <p class="card-body">{{result.notes}}</p>
+      <div class="card-footer">
+        <h4>Contact:</h4>
+        <p> {{result.phone_number}} </p>
+        <a href="{{result.url}}" class="card-link">{{result.url}}</a>
+      </div>
+  </div>
+</div>
+
+{% else %}
+<div class="container-fluid p-3 my-3">
+    <h2 class="display-4">No restaurants added yet!</h2>
+</div>
+{% endif %}
+
+{% endblock %}

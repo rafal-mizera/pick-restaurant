@@ -1,0 +1,40 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+<div class="container-fluid p-3 my-3">
+    <h1 class="display-4">Login</h1>
+</div>
+{% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+{% else %}
+    <p>If you don't have an account yet, You can register  <a href="{% url "register" %}">here</a>.</p>
+{% endif %}
+{% if next %}
+    {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+    {% else %}
+        <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<div class="container-fluid p-3 my-3 border font-weight-bold">
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+
+        <input class="btn btn-success" type="submit" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+</div>
+
+{% endblock %}

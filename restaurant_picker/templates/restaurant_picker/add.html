@@ -1,0 +1,20 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Add restaurant{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid p-3 my-3">
+    <h1 class="display-4">Add a new restaurant</h1>
+</div>
+
+<div class="container-fluid p-3 my-3 font-weight-bold">
+    <form action="." method="post" >
+        {{ restaurant_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" class="btn btn-success" value="Save"></p>
+    </form>
+</div>
+
+{% endblock %}
+
